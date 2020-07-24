@@ -6,9 +6,7 @@ class User < ApplicationRecord
   has_many :given_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
   has_many :followings, through: :given_follows, source: :followed
   after_create :create_cart
-  devise :database_authenticatable, :registerable,
-         :rememberable
-  validates :email, uniqueness: {case_sensitive: false}
+  validates :email, uniqueness: { case_sensitive: false }
   has_many :carts, dependent: :destroy
   has_many :books, through: :cart
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -21,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: Settings.PW }, allow_nil: true
   scope :lastest, -> { order created_at: :DESC }
-  after_save :follow
+
   def create_cart
     carts.create(verify: 3) if save
   end

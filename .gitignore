@@ -77,3 +77,11 @@ config/environments/*.local.yml
 /.rubocop_disabled.yml
 /.rubocop_enabled.yml
 /.rubocop.yml
+<<<<<<< HEAD
+=======
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+config/database.yml
+>>>>>>> f4e138f... Login/Logout
