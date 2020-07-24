@@ -1,6 +1,17 @@
-# frozen_string_literal: true
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_619_135_225) do
+ActiveRecord::Schema.define(version: 2020_07_29_015958) do
+
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -18,7 +29,7 @@ ActiveRecord::Schema.define(version: 20_190_619_135_225) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[book_id category_id], name: "index_bookcategories_on_book_id_and_category_id", unique: true
+    t.index ["book_id", "category_id"], name: "index_bookcategories_on_book_id_and_category_id", unique: true
     t.index ["book_id"], name: "index_bookcategories_on_book_id"
     t.index ["category_id"], name: "index_bookcategories_on_category_id"
   end
@@ -54,6 +65,16 @@ ActiveRecord::Schema.define(version: 20_190_619_135_225) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number"
     t.datetime "datefrom"
@@ -67,15 +88,17 @@ ActiveRecord::Schema.define(version: 20_190_619_135_225) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "role", default: 2
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "name"
+    t.integer "role", default: 2
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "string"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
