@@ -1,19 +1,15 @@
-class FollowsController < ApplicationController
+# frozen_string_literal: true
 
+class FollowsController < ApplicationController
   def create
-    if @user = User.find_by(follow_id: params[:follow_id])
-      current_user.follow(@user)
-      redirect_to :back
-    else
-      flash[:warming] = "user not found"
-      redirect_to root_path
-    end
+    @user = User.find_by(id: params[:format])
+    current_user.follow(@user)
+    redirect_back fallback_location: root_path
   end
 
   def destroy
-    @user.followed
+    @user = Follow.find(params[:format]).followed
     current_user.unfollow(@user)
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
-
 end
