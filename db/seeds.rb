@@ -50,7 +50,7 @@ authors.each do |author|
   end
 end
 
-Category
+# Category
 categories = %w[Textbook Novel Manga History Scientist Politic Cultural Computer Technical Geography]
 categories.each do |category|
   Category.create!(name: category)

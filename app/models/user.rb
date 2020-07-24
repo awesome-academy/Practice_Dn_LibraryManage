@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: Settings.PW}, allow_nil: true
   scope :lastest, ->{order created_at: :DESC}
-  after_save :follow
+  # after_save :follow
   def create_cart
     carts.create(verify: 3) if save
   end

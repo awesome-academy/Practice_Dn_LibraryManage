@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     resources :users
     resources :follows, only: %i[create destroy]
+    resources :books
+    resources :authors
   end
 end
