@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 # frozen_string_literal: true
 
 # The test environment is used exclusively to run your application"s
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don"t rely on the data there!
+=======
+# The test environment is used exclusively to run your application's
+# test suite. You never need to work with it otherwise. Remember that
+# your test database is "scratch space" for the test suite and is wiped
+# and recreated between test runs. Don't rely on the data there!
+>>>>>>> show list books done
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -19,7 +26,11 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
+<<<<<<< HEAD
     "Cache-Control" => "public, max-age=#{1.hour.to_i}"
+=======
+    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+>>>>>>> show list books done
   }
 
   # Show full error reports and disable caching.
