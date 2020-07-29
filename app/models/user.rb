@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :given_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
   has_many :followings, through: :given_follows, source: :followed
   after_create :create_cart
-  validates :email, uniqueness: { case_sensitive: false }
+  devise :database_authenticatable, :registerable,
+         :rememberable
+  validates :email, uniqueness: {case_sensitive: false}
   has_many :carts, dependent: :destroy
   has_many :books, through: :cart
   attr_accessor :remember_token, :activation_token, :reset_token
