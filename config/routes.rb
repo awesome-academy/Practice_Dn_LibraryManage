@@ -1,22 +1,23 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get '/authors', to:'authors#new'
-  get '/books', to:'books#new'
   root 'static_pages#Home'
 
-  get '/login',to: 'sessions#new'
+  get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/loguot', to:'sessions#destroy'
+  delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
-  post '/signup',  to: 'users#create'
+  post '/signup', to: 'users#create'
 
-  scope "(:locale)", locale: /en|vi/ do
+  scope '(:locale)', locale: /en|vi/ do
+    resources :users
   end
 
   resources :users do
     member do
       get :followings, :followers
-      end
     end
+  end
   resources :users
-  resources :follows , only: [:create, :destroy]
+  resources :follows, only: %i[create destroy]
 end

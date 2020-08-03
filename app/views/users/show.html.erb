@@ -38,7 +38,7 @@
             </div>
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong id="followers"> <%= @user.given_follows.count %></strong></h2>
+                    <h2><strong id="followed"> <%= @user.given_follows.count %></strong></h2>
                     <p><small>Followers</small></p>
                      <%= render 'follow_form' if logged_in? %>
                 </div>
