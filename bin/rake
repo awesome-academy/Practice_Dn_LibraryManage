@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+<<<<<<< HEAD
+# frozen_string_literal: true
+
+begin
+  load File.expand_path('spring', __dir__)
+=======
+begin
+  load File.expand_path('../spring', __FILE__)
+>>>>>>> 0279bce42717a994b51c4c1880b8762ec6396282
+rescue LoadError => e
+  raise unless e.message.include?('spring')
+end
+require_relative '../config/boot'
+require 'rake'
+Rake.application.run
