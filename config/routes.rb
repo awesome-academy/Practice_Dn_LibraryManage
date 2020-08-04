@@ -3,13 +3,12 @@ Rails.application.routes.draw do
 
   get "/login",to: "sessions#new"
   post "/login", to: "sessions#create"
-  delete "/loguot", to:"sessions#destroy"
+  delete "/logout", to:"sessions#destroy"
   get "/signup", to: "users#new"
   post "/signup",  to: "users#create"
 
   scope "(:locale)", locale: /en|vi/ do
     resources :users
+    resources :follows, only: %i[create destroy]
   end
-
-
 end
