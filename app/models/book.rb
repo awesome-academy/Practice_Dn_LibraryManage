@@ -13,4 +13,7 @@ class Book < ApplicationRecord
                     styles: {book_index: "250x350>", book_show: "325x475>"},
                     default_url: "/images/:style/missing.png"
   validates_attachment_content_type :book_img, content_type: %r{\Aimage/.*\z}
+
+  scope :search_name, ->(param) { where 'name LIKE ?', "%#{param}%" if param.present?}
+  scope :sort_created_at, -> {order created_at: :DESC}
 end
